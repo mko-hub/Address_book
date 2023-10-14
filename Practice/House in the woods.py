@@ -1,0 +1,66 @@
+import graphics as gr
+
+window = gr.GraphWin("Landscape", 720, 500)
+
+sun = gr.Circle(gr.Point(550, 100), 30)
+sun.setFill('yellow')
+
+cloud1 = gr.Circle(gr.Point(120, 140), 20)
+cloud2 = gr.Circle(gr.Point(150, 140), 20)
+cloud3 = gr.Circle(gr.Point(110, 160), 20)
+cloud4 = gr.Circle(gr.Point(140, 160), 20)
+cloud5 = gr.Circle(gr.Point(170, 160), 20)
+cloud1.setFill('white')
+cloud2.setFill('white')
+cloud3.setFill('white')
+cloud4.setFill('white')
+cloud5.setFill('white')
+
+sky = gr.Line(gr.Point(0, 125), gr.Point(720, 125))
+sky.setWidth(250)
+sky.setOutline('blue')
+
+ground = gr.Line(gr.Point(0, 375), gr.Point(720, 375))
+ground.setWidth(250)
+ground.setOutline('gray')
+
+tree1 = gr.Polygon(gr.Point(550, 350), gr.Point(650, 350), gr.Point(600, 300))
+tree1.setFill('green')
+tree2 = gr.Polygon(gr.Point(550, 320), gr.Point(650, 320), gr.Point(600, 270))
+tree2.setFill('green')
+tree3 = gr.Polygon(gr.Point(550, 290), gr.Point(650, 290), gr.Point(600, 240))
+tree3.setFill('green')
+wood = gr.Rectangle(gr.Point(595, 350), gr.Point(605,380))
+wood.setFill('brown')
+
+roof = gr.Polygon(gr.Point(220, 200), gr.Point(450, 200), gr.Point(310, 150))
+roof.setFill('red')
+house = gr.Rectangle(gr.Point(240, 200), gr.Point(430, 390))
+house.setFill('white')
+windows = gr.Rectangle(gr.Point(280, 260), gr.Point(360, 330))
+windows.setFill('yellow')
+lattice1 = gr.Line(gr.Point(320, 260), gr.Point(320, 330))
+lattice2 = gr.Line(gr.Point(280, 295), gr.Point(360, 295))
+
+sky.draw(window)
+ground.draw(window)
+sun.draw(window)
+cloud1.draw(window)
+cloud2.draw(window)
+cloud3.draw(window)
+cloud4.draw(window)
+cloud5.draw(window)
+tree1.draw(window)
+tree2.draw(window)
+tree3.draw(window)
+wood.draw(window)
+roof.draw(window)
+house.draw(window)
+windows.draw(window)
+lattice1.draw(window)
+lattice2.draw(window)
+
+
+window.getMouse()
+
+window.close()
