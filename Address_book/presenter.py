@@ -9,7 +9,7 @@ Presenter (MVP-pattern) for address book.
 from model_book import *
 
 tmp_dir = tmp_dir_checker()
-book_path = setting(tmp_dir)                                        # d:\programs\python
+book_path = setting(tmp_dir)
 print('\n' + 'Path to the book is {0}'.format(book_path).replace('\\\\', '\\') + '\n')
 while True:
     command = choosing_action()
