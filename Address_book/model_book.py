@@ -66,6 +66,7 @@ def setting(tmp_path):
 
 def choosing_action():
     """User choose action for execution"""
+
     command_list = ['search', 'preview', 'add', 'edit', 'remove', 'exit']
     command = ''
     while command not in command_list:
@@ -82,12 +83,14 @@ def choosing_action():
 
 def apply_action(command, path):
     """Converts string name of function in call of function"""
+
     text = command + "('" + path + "')"
     return exec(text)
 
 
 def word_check(phrase):
     """Function checks separation symbol and emptiness in string"""
+
     word = input(phrase)
     while '#' in word or len(word) == 0:
         word = input(phrase)
@@ -96,6 +99,7 @@ def word_check(phrase):
 
 def number_check(number, max_number):
     """Checks string's properties: is it digit and is it less than max_number"""
+
     if number.isdigit():
         number = int(number)
         if 1 <= number <= max_number:
@@ -107,8 +111,8 @@ def decoding(file, key=''):
     """Decode file.
 
     Find record(s) consisting key string. If key string is empty will output all records.
-    Returns count of records in file.
-    """
+    Returns count of records in file."""
+
     file = file.readlines()
     count = 0
     search_count = 0
@@ -129,6 +133,7 @@ def decoding(file, key=''):
 
 def search(path):
     """Searches for a record in book using key symbols"""
+
     print('\nSearch is selected\n')
     key = input('Enter a sequence of characters to search a record containing them\n')
     list_of_records = open(path, 'r')
@@ -148,6 +153,7 @@ def search(path):
 
 def preview(path):
     """Prints all records of the book"""
+
     print('\nListing is selected\n')
     print('List of all notes in address book:\n')
     file = open(path, 'r')
@@ -160,6 +166,7 @@ def preview(path):
 
 def add(path, repeat=0, temp=None):
     """Adds new record(s) to the book"""
+
     if temp is None:
         temp = []
     print('\nAddition is selected\n')
@@ -185,6 +192,7 @@ def add(path, repeat=0, temp=None):
 
 def edit(path):
     """Function corrects selected note"""
+
     print('\nCorrection is selected\n')
     # preview of records for user
     file = open(path, 'r')
@@ -246,6 +254,7 @@ def edit(path):
 
 def remove(path):
     """Removes note from the book by its number"""
+
     print('\nRemoval is selected\n')
     # printing list of notes in the book
     file = open(path, 'r')
