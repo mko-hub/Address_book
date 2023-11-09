@@ -30,19 +30,19 @@ def tmp_dir_checker():
 def setting(tmp_path):
     """Start of interaction with user.
 
-     User enter a path for address book. This path is saved to .txt file in temp folder
+     User enters a path for address book. This path is saved to .txt file in temp folder
      """
 
     print('\nHello, user. This is your personal address book.\
     All files will be contained in the path you selected.\n')
 
-    tmp_path = os.path.join(tmp_path, 'path_to_book.txt') # os.path.join, или использовать pathlib.Path
+    tmp_path = os.path.join(tmp_path, 'path_to_book.txt')
     # checking of creation of .txt file for path to the book
     if not os.path.isfile(tmp_path):
-        with open(tmp_path, 'w') as file: # лучше использовать контекстный менеджер with open(...)
+        with open(tmp_path, 'w') as file:
             pass
     # reading path to the book
-    with open(tmp_path, 'r') as file:     # контекстный менеджер
+    with open(tmp_path, 'r') as file:
         path = file.read()
     # if .txt have a valid path checks existence of the book
     if os.path.exists(path):
@@ -50,24 +50,22 @@ def setting(tmp_path):
             pass
     # if .txt is empty user creates new path to it
     else:
-        path = input('Enter usable path for address book in format:\
-                        \n      "C:\\files\\...\\folder_for_book" - example for Windows\
-                        \n      "/home/user/.../docs/folder_for_book" - example for UNIX\
-                        \n      "/Users/User/.../folder_for_book" - example for Mac OS\n')
+        while not os.path.exists(path):
+            path = input('Enter usable path for address book in format:\
+                    \n      "C:\\files\\...\\folder_for_book" - example for Windows\
+                    \n      "/home/user/.../docs/folder_for_book" - example for UNIX\
+                    \n      "/Users/User/.../folder_for_book" - example for Mac OS\n')
         path = os.path.join(path, 'address_book.txt')
+        print(path)
         with open(path, 'w') as file:
             pass
-        # через os.path.join реплейсами заниматься не придётся
     with open(tmp_path, 'w') as file:
-        file.write(path)  # не закрытый файл
+        file.write(path)
     return path
 
 
 def choosing_action():
     """User choose action for execution"""
-
-    # Объявляется список команд при каждом вызове функции
-    # если он константный, то его нужно вынести
 
     command = ''
     while command not in command_list:
@@ -89,7 +87,6 @@ def apply_action(command, path):
     return exec(text)
 
 
-# Названия функций лучше начинать с глагола
 def check_word(phrase):
     """Function checks separation symbol and emptiness in string"""
 
@@ -99,7 +96,6 @@ def check_word(phrase):
     return word
 
 
-# Если эта функция возвращает только 1 или ноль, то может возвращаемые данные переделать в True - False?
 def number_check(number, max_number):
     """Checks string's properties: is it digit and is it less than max_number"""
 
@@ -169,14 +165,13 @@ def preview(path):
 
 def add(path, repeat=0, temp=None):
     """Adds new record(s) to the book"""
-
+    print(path)
     if temp is None:
         temp = []
     print('\nAddition is selected\n')
     if repeat == 0:
-        file = open(path, 'r')
-        temp = file.readlines()
-        file.close()
+        with open(path, 'r') as file:
+            temp = file.readlines()
     name = check_word('Enter a name for new contact (spaces allowed)\n')
     address = check_word('Enter an address for new contact\n')
     phone = check_word('Enter a phone number for new contact\n')
@@ -297,3 +292,4 @@ def remove(path):
         remove(path)
     else:
         return
+
