@@ -10,7 +10,7 @@ from model_book import *
 
 tmp_dir = tmp_dir_checker()
 book_path = setting(tmp_dir)
-print('\n' + 'Path to the book is {0}'.format(book_path) + '\n')
+print(f'\nPath to the book is {book_path}\n')
 while True:
     command = choosing_action()
     if command == 'exit':
