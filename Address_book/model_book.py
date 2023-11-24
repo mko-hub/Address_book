@@ -38,7 +38,7 @@ def setting(tmp_path):
      """
 
     print('\nHello, user. This is your personal address book.\
-    \nAll files will be contained in the path you selected.')
+    \nAll files will be contained in the path you selected.\n')
 
     tmp_path = os.path.join(tmp_path, 'path_to_book.txt')
     # checking of creation of .txt file for path to the book
@@ -59,7 +59,7 @@ def setting(tmp_path):
             \n      "C:\\files\\...\\folder_for_book" - example for Windows\
             \n      "/home/user/.../docs/folder_for_book" - example for UNIX\
             \n      "/Users/User/.../folder_for_book" - example for Mac OS\n')
-        path = os.path.join(path, '_address_book.txt')
+        path = os.path.join(path, 'address_book.txt')
         with open(path, 'w') as file:
             pass
     with open(tmp_path, 'w') as file:
@@ -87,7 +87,7 @@ def choosing_action():
 def apply_action(command, path):
     """Converts string name of function in call of function"""
 
-    text = command + "('" + path + "')"
+    text = command + "(r'" + path + "')"
     return exec(text)
 
 
@@ -202,6 +202,7 @@ def edit(path):
     # preview of records for user
     with open(path, 'r') as file:
         count = decoding(file)
+        file.seek(0, 0)
         temp = file.readlines()
     # empty book case
     if count == 0:
